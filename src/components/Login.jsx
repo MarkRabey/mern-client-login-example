@@ -1,18 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import qs from 'qs';
 import Cookies from 'universal-cookie';
-const cookies = new Cookies();
+import { GoogleLogo } from './GoogleLogo';
 
 export const Login = props => {
   const [ email, setEmail ] = useState('mark.rabey@georgiancollege.ca');
   const [ password, setPassword ] = useState('password');
-  const [ token, setToken ] = useState(cookies.get('token'));
   const [ message, setMessage ] = useState(null);
-
-  useEffect(() => {
-    cookies.set('token', token, { path: '/' });
-  }, [ token ]);
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -24,10 +19,10 @@ export const Login = props => {
       
     }, {
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    }).then(({ data }) => setToken(data.token))
+    }).then(({ data }) => props.updateToken(data.token))
     .catch(e => {
       setMessage('Invalid login');
-      setToken(null);
+      props.updateToken(null);
     });
   }
 
@@ -58,8 +53,11 @@ export const Login = props => {
           Submit
         </button>
       </div>
-      <div style={{ width: '50%' }}>
-        Token: { token ? token : 'null' }
+      <h2>OR</h2>
+      <div>
+        <a href="/auth/google" class="button">
+          <GoogleLogo />
+        </a>
       </div>
     </div>
   );
