@@ -5,8 +5,8 @@ import Cookies from 'universal-cookie';
 import { GoogleLogo } from './GoogleLogo';
 
 export const Login = props => {
-  const [ email, setEmail ] = useState('mark.rabey@georgiancollege.ca');
-  const [ password, setPassword ] = useState('password');
+  const [ email, setEmail ] = useState('');
+  const [ password, setPassword ] = useState('');
   const [ message, setMessage ] = useState(null);
 
   const handleSubmit = e => {
@@ -52,12 +52,6 @@ export const Login = props => {
         <button onClick={ handleSubmit }>
           Submit
         </button>
-      </div>
-      <h2>OR</h2>
-      <div>
-        <a href="/auth/google" class="button">
-          <GoogleLogo />
-        </a>
       </div>
     </div>
   );
