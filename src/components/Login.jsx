@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import qs from 'qs';
-import Cookies from 'universal-cookie';
-import { GoogleLogo } from './GoogleLogo';
 
 export const Login = props => {
   const [ email, setEmail ] = useState('');

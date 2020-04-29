@@ -4,7 +4,8 @@ import axios from 'axios';
 export const Profile = props => {
   const [ user, setUser ] = useState(null);
   useEffect(() => {
-    const getUser = async () => {
+    // get the user
+    (async () => {
       try {
         const res = await axios.get('http://localhost:4300/users/me', {
           headers: {
@@ -16,9 +17,8 @@ export const Profile = props => {
       } catch (error) {
         props.onLogout(null);
       }
-    }
+    })();
 
-    getUser();
   }, [ props ]);
   
   return user ? (
